@@ -2,51 +2,14 @@
  * @param {number[]} cost
  * @return {number}
  */
-var minCostClimbingStairs = function (a) {
-    let start1 = a[0]
-    let start2 = a[1]
-    let start1Sum , start2Sum
-    const arrLen = a.length
-    if (arrLen<=3) {
-        if (arrLen === 0) {
-            return 0
-        }else if (arrLen === 1) {
-            return a[0]
-        }else if (arrLen === 2) {
-            if (a[0]>a[1]) {
-                return a[1]
-            }else{
-                return a[0]
-            }
-        }else{
-            start1Sum = (start1 + a[1]) < (start1 + a[2]) ? (start1 + a[1]) : (start1 + a[2])
-            if (start1Sum<start2) {
-                return start1Sum
-            }else{
-                return start2
-            }
-        }
-    }else{
-        start1Sum = (start1 + a[1]) < (start1 + a[2]) ? (start1 + a[1]) : (start1 + a[2])
-        start2Sum = (start2 + a[2]) < (start2 + a[3]) ? (start2 + a[2]) : (start2 + a[3])
+//If we want to know the min cost to reach stair #n, It will be tremendously helpful to know the min cost to reach step #n-1 and step #n-2 (because we can reach step #n in one step from them)
+// This is DP problen
+
+let minCostClimbingStairs = function(cost) {
+    for (let i = 2; i < cost.length; i++) {
+        cost[i] = cost[i] + Math.min(cost[i-2], cost[i-1]);
     }
-    let start = start1Sum < start2Sum ? start1 : start2
-    let startIndex = start1Sum < start2Sum ? 0 : 1
-    let final = start
-    while (true) {
-        if ((startIndex + 2) === arrLen || (startIndex + 1) === arrLen) {
-            return final
-        }
-        const v1 = a[startIndex + 1]
-        const v2 = a[startIndex + 2]
-        if (v1 < v2) {
-            final = final + v1
-            startIndex = startIndex + 1
-        } else {
-            final = final + v2
-            startIndex = startIndex + 2
-        }
-    }
+    return Math.min(cost[cost.length - 2], cost[cost.length - 1]);
 };
 
-console.log(minCostClimbingStairs([1, 100, 1, 1, 1, 100, 1, 1, 100, 1]));
+console.log(minCostClimbingStairs([1,100,1,1,1,100,1,1,100,1]));
