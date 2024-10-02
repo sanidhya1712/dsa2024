@@ -4,21 +4,21 @@ const two_sum = (array, target) => {
     for (i in array) {
         // console.log(i);
         if (target - array[i] in dict1) {
-            // return [i, dict1[target - array[i]]]
+            return [i, dict1[target - array[i]]]
         }
         else {
             dict1[array[i]] = i
         }
     }
-    for (i in dict1) {
-        console.log(i);
-        // if (target - array[i] in dict1) {
-        //     return [i, dict1[target - array[i]]]
-        // }
-        // else {
-        //     dict1[array[i]] = i
-        // }
-    }
+    // for (i in dict1) {
+    //     // console.log(i);
+    //     if (target - array[i] in dict1) {
+    //         return [i, dict1[target - array[i]]]
+    //     }
+    //     else {
+    //         dict1[array[i]] = i
+    //     }
+    // }
     return []
 }
 
