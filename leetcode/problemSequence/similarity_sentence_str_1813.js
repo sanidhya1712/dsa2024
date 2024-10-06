@@ -21,7 +21,7 @@ var areSentencesSimilar = function (sentence1, sentence2) {
     while (start < s1.length && s1[start] === s2[start]) {
         start += 1
     }
-    while (end1 > 0 && s1[end1] === s2[end2]) {
+    while (end1 >= 0 && s1[end1] === s2[end2]) {
         end1 -= 1
         end2 -= 1
     }
