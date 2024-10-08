@@ -68,11 +68,11 @@ class BinarySearchTree {
                 }
                 // if deleting the root node
                 else if (parent === null) {
-                    if (current.left !== null) {
+                    if (current.left !== null) {            // Incase root doesn't have right clild
                         current.value = current.left.value;
                         current.left = current.left.left;
                         current.right = current.left.right;
-                    } else if (current.right !== null) {
+                    } else if (current.right !== null) {    // Incase root doesn't have right clild
                         current.value = current.right.value;
                         current.left = current.right.left;
                         current.right = current.right.right;
@@ -124,4 +124,6 @@ bst.insert(3);
 bst.insert(25);
 bst.insert(29);
 bst.insert(60);
+bst.insert(70)
 console.log(bst.find(27))
+console.log(bst.remove(55));
