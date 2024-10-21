@@ -61,6 +61,32 @@ def search_key(root, key):
     # and is marked as ending
     return curr.word_end
 
+def isEmpty(root):
+    for i in range(26):
+        if root.children[i]:
+            return False
+    return True
+ 
+def remove(root, key, depth = 0):
+    if not root:
+        return None
+ 
+    if depth == len(key):
+        if root.isEndOfWord:
+            root.isEndOfWord = False
+        if isEmpty(root):
+            del root
+            root = None
+        return root
+ 
+    index = ord(key[depth]) - ord('a')
+    root.children[index] = remove(root.children[index], key, depth + 1)
+ 
+    if isEmpty(root) and not root.isEndOfWord:
+        del root
+        root = None
+    return root
+
 # Create an example Trie
 root = TrieNode()
 arr = ["and", "ant", "do", "geek", "dad", "ball"]
