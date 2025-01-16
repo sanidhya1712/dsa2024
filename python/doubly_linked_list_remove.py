@@ -29,11 +29,13 @@ class DoublyLinkedList:
         node.prev = None
 
     def insertBefore(self, nodePosition, nodeInsert):
+        if self.head == nodeInsert and self.tail == nodeInsert:     #if there is a single node and same has to be inserted
+            return
+        # remove the element if it exists in the list
         self.remove(nodeInsert)
-        # nodeInsert.prev = nodePosition.prev.next
-        # nodeInsert.next = nodePosition.prev
         nodeInsert.next = nodePosition
         nodeInsert.prev = nodePosition.prev
+        # If position is head, then update the head
         if nodePosition == self.head:
             self.head = nodeInsert
         else:
@@ -45,11 +47,20 @@ class DoublyLinkedList:
             while(node):
                 print(node.val, " - >")
                 node = node.next
+    def allNodesValueRemove(self, value):
+        if self.head:
+            node = self.head
+            while(node):
+                temp = node
+                node = node.next
+                if temp.val == value:
+                    self.remove(temp)
+
 one = Node(1)
 two = Node(2)
 three = Node(3)
-four = Node(4)
-five = Node(5)
+four = Node(2)
+five = Node(2)
 six = Node(6)
 linkNodes(one,two)
 linkNodes(two, three)
@@ -61,6 +72,6 @@ s.head = one
 s.tail = five
 # s.remove(three)
 s.print()
-s.insertBefore(three, six)
-print(s)
+# s.insertBefore(three, six)
+s.allNodesValueRemove(2)
 s.print()
