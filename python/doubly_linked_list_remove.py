@@ -55,6 +55,24 @@ class DoublyLinkedList:
                 node = node.next
                 if temp.val == value:
                     self.remove(temp)
+    def insertPosition(self, position, node):
+        curr = self.head
+        counter = 0
+        while curr != None and counter != position:         #To find position if exists in list or not
+            curr = curr.next
+            counter += 1
+        if curr != None:                        #Insert at position using insertBefore
+            self.insertBefore(curr, node)
+        else:
+            if self.head == None:
+                self.head = node
+                self.tail = node
+            else:                               #Insert at tail, first remove node if exists, then insert at tail
+                self.remove(node)
+                node.next = None
+                node.prev = self.tail
+                self.tail.next = node
+                self.tail = node
 
 one = Node(1)
 two = Node(2)
