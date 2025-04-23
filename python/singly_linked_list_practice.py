@@ -76,12 +76,18 @@ class LinkedList:
     prev.next = curr.next
     self.count-=1
     return curr.value
-# s = LinkedList()
+s = LinkedList()
 # s.addToHead(8)
 # s.addToHead(19)
 # s.addToHead(11)
-# s.addAtTail(15)
+s.addAtTail(1)
+s.addAtTail(2)
+s.addAtTail(3)
+s.addAtTail(4)
+s.addAtTail(5)
 # s.addAtIndex(16,2)
 # print("Deleted- ",s.deleteAtIndex(6))
-# s.getList()
-# print("Single return - " ,s.get(1).value)
+s.getList()
+# s1 = modifyLL(s.head)
+# s1.getList()
+print("Single return - " ,s.head.value, s.tail.value, s.count)
